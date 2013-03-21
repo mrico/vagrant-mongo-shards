@@ -42,13 +42,13 @@ file { '/etc/mongodb.conf':
 exec { 'start-cfg':
 	command => '/usr/bin/mongod --configsvr --dbpath /home/vagrant/mongo_configdb/ --port 27018 > /tmp/mongocfg.log &',
   path    => '/usr/local/bin/:/bin/',
-  onlyif  => 'test `ps -efa | grep mongod --configsrv | wc -l` -lt 1',
+  #onlyif  => 'test `ps -efa | grep mongod --configsrv | wc -l` -lt 1',
 	require => [ File['/home/vagrant/mongo_configdb'], Package['mongodb-10gen'] ],
 }
 
 exec { 'start-mongos':
   command => '/bin/sleep 60 && /usr/bin/mongos --configdb configsrv.local:27018 --port 27019 > /tmp/mongos.log &',
   path    => '/usr/local/bin/:/bin/',
-  onlyif  => 'test `ps -efa | grep mongos | wc -l` -lt 1',
+  #onlyif  => 'test `ps -efa | grep mongos | wc -l` -lt 1',
   require => [ Exec['start-cfg'], Package['mongodb-10gen'] ],
 }

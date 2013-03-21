@@ -58,5 +58,4 @@ Vagrant::Config.run do |config|
       puppet.manifest_file  = "configserver-playground.pp"
     end
   end
-
 end
