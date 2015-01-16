@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant::Config.run do |config|
+Vagrant.configure(1) do |config|
   #set max memory to 512mb per node
   config.vm.customize ["modifyvm", :id, "--memory", 512]
   

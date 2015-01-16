@@ -1,9 +1,5 @@
 # -*- mode: ruby -*-
 
-package { 'vim':
-	ensure => present,
-}
-
 group { 'puppet':
 	ensure => 'present',
 }
@@ -24,18 +20,18 @@ exec { 'add-10genkey':
 	require => File['/etc/apt/sources.list.d/10gen.list'],
 }
 
-package { 'mongodb-10gen':
+package { 'mongodb-org':
 	ensure  => present,
 	require => Exec['add-10genkey'],
 }
 
-file { '/etc/mongodb.conf':
+file { '/etc/mongod.conf':
 	ensure  => present,
-	source  => '/vagrant/manifests/mongodb.conf',
-	require => Package['mongodb-10gen'],
+	source  => '/vagrant/manifests/mongod.conf',
+	require => Package['mongodb-org'],
 }
 
-service{ 'mongodb':
+service{ 'mongod':
   ensure => running,
-  subscribe => File['/etc/mongodb.conf'],
+  subscribe => File['/etc/mongod.conf'],
 }
