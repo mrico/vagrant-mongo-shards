@@ -87,7 +87,7 @@ db.settings.save( { _id:"chunksize", value: 1 } )
 #### Problems
 
 - IP already used within your network
-  - open the vagrant fiel and change the ip of all nodes: xxx.vm.network :hostonly, "10.0.0.24" 
+  - open the vagrant file and change the ip of all nodes: xxx.vm.network :hostonly, "10.0.0.24" 
 
 - VT-X is not available / machines are not staring
   - VT-X is required for 64-bit machines. You can switch to a 32-bit base image. Open Vagrantfile and replace all occurence of __precise64__ with __precise32__
